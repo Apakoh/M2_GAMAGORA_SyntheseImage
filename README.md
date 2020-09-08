@@ -1,0 +1,1 @@
+# M2_GAMAGORA_SyntheseImage
