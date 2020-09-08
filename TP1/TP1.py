@@ -1,3 +1,6 @@
+import matplotlib.pyplot as plt
+from vectors import Point, Vector
+
 #Variables
 m = 80
 g = 9.8
@@ -8,6 +11,10 @@ deltaTime = 1
 z = [0, 0, 1]
 v0 = [50,0,0]
 p0 = [0,0,4000]
+
+z = Vector(0, 0, 1)
+v0 = Vector(50,0,0)
+p0 = Vector(0,0,4000)
 
 #####
 def multVect(v,c):
@@ -30,7 +37,7 @@ def divVect(v1,c):
 
 def sumVecttoVect(v1,v2):
     v3 = [0,0,0]
-    for coef in range(0,len(v3)-1):
+    for coef in range(0,len(v3)):
         v3[coef] = v1[coef]+v2[coef]
     return v3
 
@@ -48,10 +55,6 @@ def sumCompVect(v):
 
 
 #####
-def run():
-    for val in range(0,15):
-        runOnce(val)
-
 def runOnce(t):
     print(v(t))
     print(p(t))
@@ -71,3 +74,20 @@ def p(t):
 
 def a(t):
     return divVect(minusVecttoVect(multVect(z,-m*g),multVect(v(t),(cdg * sumCompVect(v(t))))),m)
+
+
+def printGraph():
+    res=[[],[]]
+    for val in range(0,6):
+        ptemp = p(val)
+        res[0].append(ptemp[2]);
+        res[1].append(ptemp[0]);
+    print(res)
+    plt.plot([res[1]],[res[0]])
+    plt.ylabel('Altitude')
+    plt.xlabel('x')
+    plt.show()
+
+
+#######
+printGraph()
